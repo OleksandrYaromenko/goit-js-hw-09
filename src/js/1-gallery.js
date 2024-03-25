@@ -1,3 +1,5 @@
+import SimpleLightbox from "simplelightbox";
+
 const images = [
 {
     preview:
@@ -73,7 +75,6 @@ function imgBoxCreat(arr) {
     <img
       class="gallery-image"
       src="${preview}"
-      data-source="${original}"
       alt="${description}"
     />
   </a>
@@ -81,10 +82,11 @@ function imgBoxCreat(arr) {
     `).join("")
 }
 function imgBoxClick(event) {
-    if (event.target === event.currentTarget) {
-        return
-    }
-    event.preventDefault()
-    const currentImages = event.target.closest(".gallery-item")
-    const imgFind = images.find(item => item.original === event.target.dataset.source);
+  event.preventDefault()
+  let gallery = new SimpleLightbox('.gallery a', {
+    overlayOpacity: .8,
+    captionsData: "alt",
+    captionDelay: 250,
+    captionDelay: "text-center"
+  });
 }
