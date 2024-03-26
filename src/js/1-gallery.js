@@ -67,7 +67,6 @@ const images = [
 ];
 const imgBox = document.querySelector(".gallery")
 imgBox.insertAdjacentHTML("beforeend", imgBoxCreat(images))
-imgBox.addEventListener("click", imgBoxClick)
 function imgBoxCreat(arr) {
     return arr.map(({ preview, original, description }) =>`
     <li class="gallery-item">
@@ -81,12 +80,8 @@ function imgBoxCreat(arr) {
 </li>
     `).join("")
 }
-function imgBoxClick(event) {
-  event.preventDefault()
   let gallery = new SimpleLightbox('.gallery a', {
-    overlayOpacity: .8,
     captionsData: "alt",
     captionDelay: 250,
     captionDelay: "text-center"
   });
-}
