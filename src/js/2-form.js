@@ -3,14 +3,19 @@ const TEXTAREA_KEY = "textarea"
 const feedbackForm = document.querySelector(".feedback-form");
 const input = feedbackForm.querySelector("input");
 const textarea = feedbackForm.querySelector("textarea");
+
+
 const saveToLocalStorage = (key, event) => {
     const message = event.target.value;
     localStorage.setItem(key, message);
 };
-getLocalStorage ()
+
 input.addEventListener("input", saveToLocalStorage.bind(null, "input"));
 textarea.addEventListener("input", saveToLocalStorage.bind(null, "textarea"))
-feedbackForm.addEventListener("submit",resetSubmit)
+feedbackForm.addEventListener("submit", resetSubmit)
+
+
+
 function getLocalStorage () {
     const nameGet = localStorage.getItem(INPUT_KEY)
     const messageGet = localStorage.getItem(TEXTAREA_KEY)
@@ -27,3 +32,4 @@ function resetSubmit(event) {
     localStorage.removeItem(TEXTAREA_KEY)
 }
 
+getLocalStorage ()
