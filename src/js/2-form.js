@@ -1,35 +1,50 @@
-const INPUT_KEY = "input"
-const TEXTAREA_KEY = "textarea"
+const INPUT_KEY = "feedback-form-state"
 const feedbackForm = document.querySelector(".feedback-form");
-const input = feedbackForm.querySelector("input");
-const textarea = feedbackForm.querySelector("textarea");
+const emailInput = feedbackForm.querySelector('input[name="email"]');
+const messageInput = feedbackForm.querySelector('textarea[name="message"]');
+feedbackForm.addEventListener("input", saveToLocalStorage);
+
+feedbackForm.addEventListener("submit", resetSubmit);
 
 
-const saveToLocalStorage = (key, event) => {
-    const message = event.target.value;
-    localStorage.setItem(key, message);
-};
-
-input.addEventListener("input", saveToLocalStorage.bind(null, "input"));
-textarea.addEventListener("input", saveToLocalStorage.bind(null, "textarea"))
-feedbackForm.addEventListener("submit", resetSubmit)
-
+getLocalStorage()
 
 
 function getLocalStorage () {
-    const nameGet = localStorage.getItem(INPUT_KEY)
-    const messageGet = localStorage.getItem(TEXTAREA_KEY)
-    if (nameGet,messageGet) {
-        input.value = nameGet
-        textarea.value = messageGet
+    const messageGet = localStorage.getItem(INPUT_KEY)
+    if (messageGet) {
+        const { email, message } = JSON.parse(messageGet)
+        emailInput.value = email
+        messageInput.value = message
     }
-    console.log(nameGet)
 }
+function saveToLocalStorage () {
+    const fromData = {
+        email:
+            emailInput.value,
+        message:
+            messageInput.value
+        
+    }
+    localStorage.setItem(INPUT_KEY, JSON.stringify(fromData))
+   
+};
 function resetSubmit(event) {
     event.preventDefault()
+    const formData = { email: emailInput.value, message: messageInput.value };
+    console.log(formData); 
     event.currentTarget.reset()
     localStorage.removeItem(INPUT_KEY)
-    localStorage.removeItem(TEXTAREA_KEY)
+    
 }
 
-getLocalStorage ()
+
+
+
+
+
+
+
+
+
+
