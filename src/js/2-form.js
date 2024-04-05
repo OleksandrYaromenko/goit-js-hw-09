@@ -30,8 +30,11 @@ function saveToLocalStorage () {
    
 };
 function resetSubmit(event) {
-    event.preventDefault()
     const formData = { email: emailInput.value, message: messageInput.value };
+    if (formData.email === "") {
+        return alert ("Ведіть будь ласка дані!")
+    }
+    event.preventDefault()
     console.log(formData); 
     event.currentTarget.reset()
     localStorage.removeItem(INPUT_KEY)
