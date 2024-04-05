@@ -31,7 +31,7 @@ function saveToLocalStorage () {
 };
 function resetSubmit(event) {
     const formData = { email: emailInput.value, message: messageInput.value };
-    if (formData.email === "") {
+    if (formData.email === "" || formData.message ==="" ) {
         return alert ("Ведіть будь ласка дані!")
     }
     event.preventDefault()
